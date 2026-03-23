@@ -16,16 +16,17 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 // CẤU HÌNH EXPRESS CORS & JSON
 // ==========================================
 app.use(cors({
-    origin: '*', // Cho phép mọi IP gọi API
-    methods: ['GET', 'POST']
+    origin: '*', // Tạm thời để '*' (cho phép tất cả) để test cho dễ, chạy ok rồi sếp đổi thành link Vercel sau cũng được.
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
 }));
 
 
 const server = http.createServer(app);
-const io = require("socket.io")(server, {
+const io = require('socket.io')(server, {
     cors: {
-        origin: "*", // Mở toang cửa cho điện thoại kết nối Socket
-        methods: ["GET", "POST"]
+        origin: '*', // Mở cửa cho mọi Frontend kết nối Socket
+        methods: ['GET', 'POST']
     }
 });
 
